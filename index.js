@@ -1,5 +1,6 @@
 const mysql = require('mysql');
 const http = require('http');
+require('dotenv').config();
 
 const port = process.env.PORT || 3000;
 
@@ -17,12 +18,14 @@ var database = mysql.createPool(dbConfig);
 database.getConnection((err, dbConnection) => {
 	if (!err) {
 		console.log("Successfully connected to MySQL");
+		
 	}
 	else {
 		console.log("Error Connecting to MySQL");
 		console.log(err);
 	}
 });
+// console.log(process.env.IS_HEROKU);
 
 
 http.createServer(function(req, res) {
